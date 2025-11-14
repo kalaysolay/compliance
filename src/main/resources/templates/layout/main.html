@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title th:replace="~{::title}">Compliance</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/adminlte-lite.css}" />
+    <script th:src="@{/js/bootstrap.bundle.min.js}" defer></script>
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <header th:replace="fragments/header :: header"></header>
+    <aside th:replace="fragments/sidebar :: sidebar"></aside>
+    <main class="content-wrapper p-4" layout:fragment="content">
+        <div class="container-fluid">
+            <div class="alert alert-info" role="alert">
+                Контент не задан.
+            </div>
+        </div>
+    </main>
+    <footer th:replace="fragments/footer :: footer"></footer>
+</div>
+</body>
+</html>

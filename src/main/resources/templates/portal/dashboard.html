@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Панель пользователя</title>
+</head>
+<body layout:decorate="~{layout/main}">
+<section layout:fragment="content">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header">Мои заявки</div>
+                <div class="card-body">
+                    <p th:if="${issues.isEmpty()}">Нет заявок.</p>
+                    <ul class="list-group" th:if="${!issues.isEmpty()}">
+                        <li class="list-group-item" th:each="issue : ${issues}">
+                            <a th:href="@{'/portal/issues/' + ${issue.id}}" th:text="${issue.documentNumber}"></a>
+                            <span class="badge bg-secondary ms-2" th:text="${issue.status}"></span>
+                        </li>
+                    </ul>
+                    <a class="btn btn-sm btn-primary mt-3" th:href="@{/portal/issues/new}">Новая заявка</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-header">Мои подарки</div>
+                <div class="card-body">
+                    <p th:if="${gifts.isEmpty()}">Нет подарков.</p>
+                    <ul class="list-group" th:if="${!gifts.isEmpty()}">
+                        <li class="list-group-item" th:each="gift : ${gifts}">
+                            <a th:href="@{'/portal/gifts/' + ${gift.id}}" th:text="${gift.documentNumber}"></a>
+                            <span class="badge bg-info text-dark ms-2" th:text="${gift.counterparty}"></span>
+                        </li>
+                    </ul>
+                    <a class="btn btn-sm btn-success mt-3" th:href="@{/portal/gifts/new}">Зарегистрировать подарок</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

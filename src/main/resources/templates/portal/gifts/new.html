@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Регистрация подарка</title>
+</head>
+<body layout:decorate="~{layout/main}">
+<section layout:fragment="content">
+    <h1 class="h4 mb-4">Регистрация подарка</h1>
+    <form th:action="@{/portal/gifts}" th:object="${giftForm}" method="post" class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label">Контрагент</label>
+            <input class="form-control" th:field="*{counterparty}">
+            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('counterparty')}" th:errors="*{counterparty}"></div>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Стоимость</label>
+            <input type="number" class="form-control" min="0" step="0.01" th:field="*{estimatedValue}">
+            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('estimatedValue')}" th:errors="*{estimatedValue}"></div>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Валюта</label>
+            <input class="form-control" maxlength="3" th:field="*{currency}">
+            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('currency')}" th:errors="*{currency}"></div>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Дата события</label>
+            <input type="date" class="form-control" th:field="*{eventDate}">
+            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('eventDate')}" th:errors="*{eventDate}"></div>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Обоснование</label>
+            <textarea class="form-control" rows="5" th:field="*{justification}"></textarea>
+            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('justification')}" th:errors="*{justification}"></div>
+        </div>
+        <div class="col-12 text-end">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <a class="btn btn-outline-secondary" th:href="@{/portal/gifts}">Отмена</a>
+            <button class="btn btn-success" type="submit">Сохранить</button>
+        </div>
+    </form>
+</section>
+</body>
+</html>
