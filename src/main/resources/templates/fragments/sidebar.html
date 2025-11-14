@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8" />
+    <title>sidebar</title>
+</head>
+<body>
+<nav th:fragment="sidebar" class="main-sidebar sidebar-dark-primary elevation-4">
+    <div class="sidebar">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex text-white">
+            <div class="info">
+                <span th:text="${#authentication.name}">user</span>
+            </div>
+        </div>
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" role="menu">
+                <li class="nav-item" sec:authorize="hasRole('USER')">
+                    <a th:href="@{/portal/dashboard}" class="nav-link">Панель пользователя</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('USER')">
+                    <a th:href="@{/portal/issues}" class="nav-link">Мои заявки</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('USER')">
+                    <a th:href="@{/portal/gifts}" class="nav-link">Мои подарки</a>
+                </li>
+                <li class="nav-header text-uppercase small text-secondary" sec:authorize="hasRole('OFFICER')">
+                    Админка
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('OFFICER')">
+                    <a th:href="@{/admin/dashboard}" class="nav-link">Дашборд офицера</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('OFFICER')">
+                    <a th:href="@{/admin/issues}" class="nav-link">Все заявки</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('OFFICER')">
+                    <a th:href="@{/admin/gifts}" class="nav-link">Все подарки</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</nav>
+</body>
+</html>

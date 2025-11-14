@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>footer</title>
+</head>
+<body>
+<footer th:fragment="footer" class="main-footer text-center py-3">
+    <small>&copy; <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2024</span> Compliance MVP</small>
+</footer>
+</body>
+</html>

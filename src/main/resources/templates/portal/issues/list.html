@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Мои заявки</title>
+</head>
+<body layout:decorate="~{layout/main}">
+<section layout:fragment="content">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h4">Мои заявки</h1>
+        <a class="btn btn-primary" th:href="@{/portal/issues/new}">Новая заявка</a>
+    </div>
+    <form class="row g-2 mb-4">
+        <div class="col-md-3">
+            <label class="form-label">Тип</label>
+            <select class="form-select" name="issueType">
+                <option value="">Все</option>
+                <option th:each="type : ${T(com.example.compliance.model.IssueType).values()}"
+                        th:value="${type}" th:text="${type}"
+                        th:selected="${filter.issueType} == ${type}"></option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Статус</label>
+            <select class="form-select" name="status">
+                <option value="">Все</option>
+                <option th:each="status : ${T(com.example.compliance.model.IssueStatus).values()}"
+                        th:value="${status}" th:text="${status}"
+                        th:selected="${filter.status} == ${status}"></option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">С</label>
+            <input class="form-control" type="date" name="fromDate" th:value="${filter.fromDate}">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">По</label>
+            <input class="form-control" type="date" name="toDate" th:value="${filter.toDate}">
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Поиск по описанию</label>
+            <input class="form-control" type="text" name="query" th:value="${filter.query}">
+        </div>
+        <div class="col-12 text-end">
+            <button class="btn btn-outline-secondary" type="submit">Применить</button>
+        </div>
+    </form>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>Тип</th>
+                <th>Дата события</th>
+                <th>Статус</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="issue : ${issues}">
+                <td th:text="${issue.documentNumber}"></td>
+                <td th:text="${issue.issueType}"></td>
+                <td th:text="${issue.eventDate}"></td>
+                <td th:text="${issue.status}"></td>
+                <td><a th:href="@{'/portal/issues/' + ${issue.id}}" class="btn btn-sm btn-link">Открыть</a></td>
+            </tr>
+            <tr th:if="${issues.isEmpty()}">
+                <td colspan="5" class="text-center">Нет записей</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>

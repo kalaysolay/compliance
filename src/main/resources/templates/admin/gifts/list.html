@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Все подарки</title>
+</head>
+<body layout:decorate="~{layout/main}">
+<section layout:fragment="content">
+    <h1 class="h4 mb-3">Все подарки</h1>
+    <form class="row g-2 mb-4">
+        <div class="col-md-3">
+            <label class="form-label">Контрагент</label>
+            <input class="form-control" name="counterparty" th:value="${filter.counterparty}">
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">Пользователь</label>
+            <input class="form-control" name="creatorUsername" th:value="${filter.creatorUsername}">
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">С</label>
+            <input class="form-control" type="date" name="fromDate" th:value="${filter.fromDate}">
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">По</label>
+            <input class="form-control" type="date" name="toDate" th:value="${filter.toDate}">
+        </div>
+        <div class="col-md-1">
+            <label class="form-label">Мин</label>
+            <input class="form-control" type="number" min="0" step="0.01" name="minValue" th:value="${filter.minValue}">
+        </div>
+        <div class="col-md-1">
+            <label class="form-label">Макс</label>
+            <input class="form-control" type="number" min="0" step="0.01" name="maxValue" th:value="${filter.maxValue}">
+        </div>
+        <div class="col-12 text-end">
+            <button class="btn btn-outline-secondary" type="submit">Фильтр</button>
+        </div>
+    </form>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>Пользователь</th>
+                <th>Контрагент</th>
+                <th>Стоимость</th>
+                <th>Дата</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="gift : ${gifts}">
+                <td th:text="${gift.documentNumber}"></td>
+                <td th:text="${gift.creator.fullName}"></td>
+                <td th:text="${gift.counterparty}"></td>
+                <td><span th:text="${gift.estimatedValue}"></span> <span th:text="${gift.currency}"></span></td>
+                <td th:text="${gift.eventDate}"></td>
+                <td><a class="btn btn-sm btn-link" th:href="@{'/admin/gifts/' + ${gift.id}}">Открыть</a></td>
+            </tr>
+            <tr th:if="${gifts.isEmpty()}">
+                <td colspan="6" class="text-center">Нет записей</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+</body>
+</html>
