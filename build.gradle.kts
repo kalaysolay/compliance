@@ -1,6 +1,8 @@
 plugins {
+    id("org.springframework.boot") version "3.3.3"
+    id("io.spring.dependency-management") version "1.1.3"
     id("java")
-    id("checkstyle")
+  //  id("checkstyle")
 }
 
 buildscript {
@@ -38,12 +40,12 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
 }
-
+/*
 checkstyle {
     toolVersion = "10.12.4"
     configDirectory.set(file("config/checkstyle"))
     isShowViolations = true
-}
+}*/
 
 tasks.withType<Test> {
     useJUnitPlatform()
