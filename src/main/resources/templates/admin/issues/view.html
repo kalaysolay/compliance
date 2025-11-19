@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title th:text="${issue.documentNumber}">Заявка</title>
+</head>
+<body layout:decorate="~{layout/main}">
+<section layout:fragment="content">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h4" th:text="${issue.documentNumber}">CA-000</h1>
+        <span class="badge bg-secondary" th:text="${issue.status}"></span>
+    </div>
+    <dl class="row">
+        <dt class="col-sm-3">Пользователь</dt>
+        <dd class="col-sm-9" th:text="${issue.creator.fullName}"></dd>
+        <dt class="col-sm-3">Тип</dt>
+        <dd class="col-sm-9" th:text="${issue.issueType}"></dd>
+        <dt class="col-sm-3">Дата события</dt>
+        <dd class="col-sm-9" th:text="${issue.eventDate}"></dd>
+        <dt class="col-sm-3">Создано</dt>
+        <dd class="col-sm-9" th:text="${issue.createdAt}"></dd>
+        <dt class="col-sm-3">Описание</dt>
+        <dd class="col-sm-9" th:text="${issue.description}"></dd>
+    </dl>
+    <form th:action="@{'/admin/issues/' + ${issue.id} + '/status'}" method="post" class="row gy-2 gx-3 align-items-end">
+        <div class="col-auto">
+            <label class="form-label">Статус</label>
+            <select class="form-select" name="status">
+                <option th:each="status : ${availableStatuses}" th:value="${status}" th:text="${status}" th:selected="${status} == ${issue.status}"></option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <button class="btn btn-primary" type="submit">Сохранить</button>
+        </div>
+    </form>
+    <a class="btn btn-outline-secondary mt-3" th:href="@{/admin/issues}">Назад</a>
+</section>
+</body>
+</html>

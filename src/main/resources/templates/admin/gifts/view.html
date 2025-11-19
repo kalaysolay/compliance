@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title th:text="${gift.documentNumber}">Подарок</title>
+</head>
+<body layout:decorate="~{layout/main}">
+<section layout:fragment="content">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h4" th:text="${gift.documentNumber}">GA-000</h1>
+        <span class="badge bg-info text-dark" th:text="${gift.creator.fullName}"></span>
+    </div>
+    <dl class="row">
+        <dt class="col-sm-3">Контрагент</dt>
+        <dd class="col-sm-9" th:text="${gift.counterparty}"></dd>
+        <dt class="col-sm-3">Стоимость</dt>
+        <dd class="col-sm-9"><span th:text="${gift.estimatedValue}"></span> <span th:text="${gift.currency}"></span></dd>
+        <dt class="col-sm-3">Дата события</dt>
+        <dd class="col-sm-9" th:text="${gift.eventDate}"></dd>
+        <dt class="col-sm-3">Обоснование</dt>
+        <dd class="col-sm-9" th:text="${gift.justification}"></dd>
+        <dt class="col-sm-3">Создано</dt>
+        <dd class="col-sm-9" th:text="${gift.createdAt}"></dd>
+    </dl>
+    <a class="btn btn-outline-secondary" th:href="@{/admin/gifts}">Назад</a>
+</section>
+</body>
+</html>

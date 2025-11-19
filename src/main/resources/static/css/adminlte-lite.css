@@ -1,0 +1,30 @@
+/* Дополнительные стили, имитирующие структуру AdminLTE. */
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.main-sidebar {
+    padding: 1rem 0;
+}
+
+.sidebar .user-panel {
+    padding: 0 1rem;
+}
+
+.sidebar .nav-link {
+    border-radius: 0.375rem;
+}
+
+.content-wrapper {
+    padding: 2rem;
+}
+
+.main-footer {
+    padding: 1rem;
+}
+
+.hold-transition.sidebar-mini .content-wrapper {
+    margin-left: 0;
+}

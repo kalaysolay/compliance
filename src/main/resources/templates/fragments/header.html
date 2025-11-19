@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>header</title>
+</head>
+<body>
+<div th:fragment="header" class="main-header navbar navbar-expand navbar-white navbar-light">
+    <a class="navbar-brand" th:href="@{/}">Compliance</a>
+    <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+            <form th:action="@{/logout}" method="post" class="d-inline">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <button type="submit" class="btn btn-sm btn-outline-secondary">Выход</button>
+            </form>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
