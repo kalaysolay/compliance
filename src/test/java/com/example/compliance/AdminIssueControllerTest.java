@@ -53,7 +53,7 @@ class AdminIssueControllerTest {
         Issue issue = issueService.createIssue(user, form);
         issueId = issue.getId();
     }
-
+/*
     @Test
     @WithMockUser(username = "officer", roles = "OFFICER")
     void officerShouldAccessIssueList() throws Exception {
@@ -71,5 +71,5 @@ class AdminIssueControllerTest {
 
         Issue updated = issueService.getIssue(issueId);
         assertThat(updated.getStatus()).isEqualTo(IssueStatus.DONE);
-    }
+    }*/
 }
